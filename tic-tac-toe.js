@@ -5,6 +5,7 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector(".msg");
 let turnO = true;
 
+// winning conditions
 const winPattern = [
   [0, 1, 2],
   [3, 4, 5],
@@ -16,12 +17,14 @@ const winPattern = [
   [2, 4, 6],
 ];
 
+// function  to reset game
 const resetGame = () => {
   turnO = true;
   enableBoxes();
   msgContainer.classList.add("hide");
 };
 
+// function to give turns to each player
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (turnO === true) {
@@ -39,26 +42,30 @@ boxes.forEach((box) => {
   });
 });
 
+// after game is complete it disables all the boxes
 const disableBoxes = () => {
   for (const box of boxes) {
-    box.disabled = true;
+    box.disabled = true; // to disable
   }
 };
+
+// after clicking reset or new game buttons wil be enabled again
 const enableBoxes = () => {
   for (const box of boxes) {
-    box.disabled = false;
-    box.innerText = "";
+    box.disabled = false; // to enable boxes
+    box.innerText = ""; // to make boxes empty
   }
 };
 
 const showWinner = (winner) => {
-  msg.innerText = `winner is ${winner}`;
-  //   msg.innerText = `fuck you 🖕`;
+  msg.innerText = `winner is ${winner}`; // text we get after winning
+  // msg.innerText = `fuck you 🖕`; // NO OFFENSE!!! just for fun
 
-  msgContainer.classList.remove("hide");
+  msgContainer.classList.remove("hide"); // hide class was created to hide winner message which is removed here
   disableBoxes();
 };
 
+// function to give winning conditions
 const checkWinner = () => {
   for (let pattern of winPattern) {
     let pos1Val = boxes[pattern[0]].innerText;
